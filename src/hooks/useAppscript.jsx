@@ -19,6 +19,7 @@ const useAppscript = () => {
       console.log(error);
     } finally {
       setIsLoading(false);
+      window.close();
     }
   };
 
