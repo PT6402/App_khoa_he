@@ -14,10 +14,10 @@ export default function CardItem({ dataReport }) {
                 <div className="flex justify-between">
                   <p className="font-bold ">Tổng + :</p>
                   <p>
-                    {dataReport["+"]}/{dataReport.total * 28}
+                    {dataReport["+"]}/{dataReport.total * 22}
                   </p>
                   <p>
-                    {((dataReport["+"] / dataReport.total) * 28).toFixed(2)}%
+                    {((dataReport["+"] / dataReport.total) * 22).toFixed(2)}%
                   </p>
                 </div>
                 <div className="flex justify-between">
