@@ -9,7 +9,7 @@ export default function CardItem({ dataReport }) {
             <div className="flex-none w-full max-w-full px-3">
               <div>
                 <p className="mb-3 font-sans text-sm text-center font-semibold leading-normal uppercase ">
-                  Điểm +/-
+                  Điểm +/- của chánh
                 </p>
                 <div className="flex justify-between">
                   <p className="font-bold ">Tổng + :</p>
