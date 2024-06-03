@@ -49,7 +49,7 @@ export default function HomePage() {
     <div className="flex items-center justify-center flex-col pt-5 min-h-screen relative">
       {showDialog && <DialogItem />}
       <h1 className="font-bold sm:text-2xl ">
-        Hi! H.Trưởng C.{handleCheckName()} nè
+        Hi! H.Trưởng C.{handleCheckName()} nè!
       </h1>
       {dataReport && <CardItem dataReport={dataReport} />}
       <Button
