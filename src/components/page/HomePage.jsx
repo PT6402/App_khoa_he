@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useAppscript from "../../hooks/useAppscript";
 import CardItem from "./CardItem";
 import DialogItem from "../common/DialogItem";
+import CardLoad from "./CardLoad";
 
 export default function HomePage() {
   const { handleDoneDay, isLoading, handleReport } = useAppscript();
@@ -35,10 +36,11 @@ export default function HomePage() {
       setIsActive(true);
     } else if (!isLoading && dataReport) {
       setIsActive(false);
+      setIsActiveCard(true);
     } else if (isLoading && !dataReport) {
       setIsActiveCard(false);
     } else if (!isLoading && !dataReport) {
-      setIsActiveCard(true);
+      setIsActiveCard(false);
     }
   }, [isLoading]);
 
@@ -51,7 +53,7 @@ export default function HomePage() {
       <h1 className="font-bold sm:text-2xl ">
         Hi! H.Trưởng C.{handleCheckName()} nè!
       </h1>
-      {dataReport && <CardItem dataReport={dataReport} />}
+      {isActiveCard ? <CardItem dataReport={dataReport} /> : <CardLoad />}
       <Button
         isLoading={isActive}
         title={"Kết ngày thôi"}
