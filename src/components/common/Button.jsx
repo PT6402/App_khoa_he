@@ -33,7 +33,7 @@ export default function Button({ isLoading = false, title, onClick }) {
               fill="#1C64F2"
             />
           </svg>
-          Loading...
+          Chờ xíu...
         </button>
       )}
     </div>
