@@ -11,34 +11,22 @@ const useAppscript = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const formData = new FormData();
-      formData.append("type", type);
-      formData.append("action", "handle_done_day");
-      const res = await axios.post(`${urlAppscript}`, formData);
-      console.log(res);
+      const formData1 = new FormData();
+      formData1.append("type", type);
+      formData1.append("action", "handle_done_day");
+      await axios.post(`${urlAppscript}`, formData1);
+
+      const formData2 = new FormData();
+      formData2.append("type", type);
+      formData2.append("action", "handle_mark");
+      await axios.post(`${urlAppscript}`, formData2);
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
-      window.close();
     }
   };
-  const handleMark = async ({ type }) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const formData = new FormData();
-      formData.append("type", type);
-      formData.append("action", "handle_mark");
-      const res = await axios.post(`${urlAppscript}`, formData);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-      window.close();
-    }
-  };
-  return { isLoading, error, handleDoneDay, handleMark };
+
+  return { isLoading, error, handleDoneDay };
 };
 export default useAppscript;
