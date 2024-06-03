@@ -6,9 +6,11 @@ import CardItem from "./CardItem";
 import DialogItem from "../common/DialogItem";
 
 export default function HomePage() {
-  const { handleDoneDay, isLoading } = useAppscript();
+  const { handleDoneDay, isLoading, handleReport } = useAppscript();
   const { type } = useParams();
+  const [dataReport, setDataReport] = useState();
   const [isActive, setIsActive] = useState(false);
+  const [isActiveCard, setIsActiveCard] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const handDoneDay = async () => {
     await handleDoneDay({ type });
@@ -29,19 +31,27 @@ export default function HomePage() {
     }
   };
   useEffect(() => {
-    if (isLoading) {
+    if (isLoading && dataReport) {
       setIsActive(true);
-    } else {
+    } else if (!isLoading && dataReport) {
       setIsActive(false);
+    } else if (isLoading && !dataReport) {
+      setIsActiveCard(false);
+    } else if (!isLoading && !dataReport) {
+      setIsActiveCard(true);
     }
   }, [isLoading]);
+
+  useEffect(() => {
+    handleReport({ type }).then((res) => setDataReport(res));
+  }, []);
   return (
     <div className="flex items-center justify-center flex-col pt-5 min-h-screen relative">
       {showDialog && <DialogItem />}
       <h1 className="font-bold sm:text-2xl ">
         Hi! H.Trưởng C.{handleCheckName()} nè
       </h1>
-      <CardItem />
+      {dataReport && <CardItem dataReport={dataReport} />}
       <Button
         isLoading={isActive}
         title={"Kết ngày thôi"}

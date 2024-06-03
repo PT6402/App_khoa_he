@@ -1,4 +1,6 @@
-export default function CardItem() {
+/* eslint-disable react/prop-types */
+export default function CardItem({ dataReport }) {
+  console.log(dataReport);
   return (
     <div className="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 mt-5">
       <div className="relative flex flex-col min-w-0 break-words bg-white shadow-2xl border rounded-2xl bg-clip-border">
@@ -11,13 +13,21 @@ export default function CardItem() {
                 </p>
                 <div className="flex justify-between">
                   <p className="font-bold ">Tổng + :</p>
-                  <p>20/200</p>
-                  <p>20%</p>
+                  <p>
+                    {dataReport["+"]}/{dataReport.total * 28}
+                  </p>
+                  <p>
+                    {((dataReport["+"] / dataReport.total) * 28).toFixed(2)}%
+                  </p>
                 </div>
                 <div className="flex justify-between">
                   <p className="font-bold ">Tổng - :</p>
-                  <p>20/200</p>
-                  <p>20%</p>
+                  <p>
+                    {dataReport["-"]}/{dataReport.total * 38}
+                  </p>
+                  <p>
+                    {((dataReport["-"] / dataReport.total) * 38).toFixed(2)}%
+                  </p>
                 </div>
               </div>
             </div>

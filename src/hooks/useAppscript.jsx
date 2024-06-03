@@ -26,7 +26,22 @@ const useAppscript = () => {
       setIsLoading(false);
     }
   };
+  const handleReport = async ({ type }) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const formData1 = new FormData();
+      formData1.append("type", type);
+      formData1.append("action", "handle_report");
+      const res = await axios.post(`${urlAppscript}`, formData1);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  return { isLoading, error, handleDoneDay };
+  return { isLoading, error, handleDoneDay, handleReport };
 };
 export default useAppscript;
