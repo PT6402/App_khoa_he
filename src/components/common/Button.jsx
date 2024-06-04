@@ -1,12 +1,18 @@
 /* eslint-disable react/prop-types */
-export default function Button({ isLoading = false, title, onClick }) {
+export default function Button({
+  isLoading = false,
+  title,
+  onClick,
+  disabled,
+}) {
   return (
     <div className="flex gap-2 flex-wrap justify-center p-4 md:p-12">
       {!isLoading ? (
         <button
+          disabled={disabled}
           onClick={onClick}
           type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2  inline-flex items-center disabled:bg-gray-400"
         >
           {title}
         </button>

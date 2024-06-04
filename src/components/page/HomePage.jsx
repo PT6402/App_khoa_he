@@ -52,6 +52,7 @@ export default function HomePage() {
   const handleGetStatus = (enabled) => {
     setIsChangeDay(enabled);
   };
+  console.log(isActiveCard);
   return (
     <div className="flex items-center justify-center flex-col pt-5 min-h-screen relative">
       {showDialog && <DialogItem />}
@@ -64,6 +65,7 @@ export default function HomePage() {
         isLoading={isActive}
         title={"Kết ngày thôi"}
         onClick={handDoneDay}
+        disabled={!isActiveCard}
       />
     </div>
   );
