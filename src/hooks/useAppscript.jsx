@@ -7,12 +7,13 @@ const useAppscript = () => {
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState();
 
-  const handleDoneDay = async ({ type }) => {
+  const handleDoneDay = async ({ type, isChange }) => {
     setIsLoading(true);
     setError(null);
     try {
       const formData1 = new FormData();
       formData1.append("type", type);
+      formData1.append("isChange", isChange);
       formData1.append("action", "handle_done_day");
       await axios.post(`${urlAppscript}`, formData1);
 

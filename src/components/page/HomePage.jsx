@@ -5,16 +5,18 @@ import useAppscript from "../../hooks/useAppscript";
 import CardItem from "./CardItem";
 import DialogItem from "../common/DialogItem";
 import CardLoad from "./CardLoad";
+import SwitchItem from "../common/SwitchItem";
 
 export default function HomePage() {
   const { handleDoneDay, isLoading, handleReport } = useAppscript();
   const { type } = useParams();
+  const [isChangeDay, setIsChangeDay] = useState(false);
   const [dataReport, setDataReport] = useState();
   const [isActive, setIsActive] = useState(false);
   const [isActiveCard, setIsActiveCard] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const handDoneDay = async () => {
-    await handleDoneDay({ type });
+    await handleDoneDay({ type, isChange: isChangeDay });
     setShowDialog(true);
   };
   const handleCheckName = () => {
@@ -47,6 +49,9 @@ export default function HomePage() {
   useEffect(() => {
     handleReport({ type }).then((res) => setDataReport(res));
   }, []);
+  const handleGetStatus = (enabled) => {
+    setIsChangeDay(enabled);
+  };
   return (
     <div className="flex items-center justify-center flex-col pt-5 min-h-screen relative">
       {showDialog && <DialogItem />}
@@ -54,6 +59,7 @@ export default function HomePage() {
         Hi! H.Trưởng C.{handleCheckName()} nè!
       </h1>
       {isActiveCard ? <CardItem dataReport={dataReport} /> : <CardLoad />}
+      <SwitchItem handleGetStatus={handleGetStatus} />
       <Button
         isLoading={isActive}
         title={"Kết ngày thôi"}
